@@ -1,9 +1,12 @@
-function getUsersDate() {
-  return Date.parse(prompt("Enter date, e.g. 1990-01-01, :"));
+function getAge(dateString) {
+  const dateInMilliseconds = Date.parse(dateString);
+  const currentDateInMilliseconds = Date.now();
+
+  function getTimeInYears(timeInMilliseconds) {
+    return Math.floor(timeInMilliseconds / (1000 * 60 * 60 * 24 * 365));
+  }
+
+  return getTimeInYears(currentDateInMilliseconds - dateInMilliseconds);
 }
 
-function getTimeElapsedInYears(timeInMilliseconds) {
-  return Math.floor(timeInMilliseconds / (1000 * 60 * 60 * 24 * 365));
-}
-
-console.log(getTimeElapsedInYears(Date.now() - getUsersDate()));
+console.log(getAge("1972-12-04"));
